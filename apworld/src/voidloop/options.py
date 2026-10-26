@@ -23,16 +23,11 @@ from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 # A toggle is an option that can either be on or off. This will be represented by a checkbox on the website.
 # The default for a toggle is "off".
 # If you want a toggle to be on by default, you can use the "DefaultOnToggle" class instead of the "Toggle" class.
-# class HardMode(Toggle):
-#     """
-#     In hard mode, the basic enemy and the final boss will have more health.
-#     The Health Upgrades become progression, as they are now required to beat the final boss.
-#     """
-#
-#     # The docstring of an option is used as the description on the website and in the template yaml.
-#
-#     # You'll also want to set a display name, which will determine what the option is called on the website.
-#     display_name = "Hard Mode"
+class EvilMode(Toggle):
+    """
+    Does nothing. Exists to satisfy a requirement.
+    """
+    display_name = "Evil Mode"
 
 
 
@@ -98,13 +93,6 @@ from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 @dataclass
 class VoidloopOptions(PerGameCommonOptions):
     pass
-    # hard_mode: HardMode
-    # hammer: Hammer
-    # extra_starting_chest: ExtraStartingChest
-    # start_with_one_confetti_cannon: StartWithOneConfettiCannon
-    # trap_chance: TrapChance
-    # confetti_explosiveness: ConfettiExplosiveness
-    # player_sprite: PlayerSprite
 
 
 # If we want to group our options by similar type, we can do so as well. This looks nice on the website.

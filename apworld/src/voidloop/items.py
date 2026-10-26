@@ -25,15 +25,18 @@ def get_random_filler_item_name(world: VoidloopWorld) -> str:
     # This ensures that generating with the same generator seed twice yields the same output.
     # DO NOT use a bare random object from Python's built-in random module.
     random_float = world.random.random()
-    if random_float < 0.05:
+    if random_float < 0.125:
         return "Voidrock"
+    elif random_float < 0.25:
+        return "Random Golden Chest Loot"
     else:
-        return  "Random Loot"
+        return  "Random Chest Loot"
 
 
 def create_item_with_correct_classification(world: VoidloopWorld, name: str) -> VoidloopItem:
-    classification = constants.DEFAULT_ITEM_CLASSIFICATION.get(name) or ItemClassification.filler
+    classification = DEFAULT_ITEM_CLASSIFICATION.get(name) or ItemClassification.filler
 
+    print(f"Creating item {name} with Classification {classification} (given {constants.DEFAULT_ITEM_CLASSIFICATION.get(name) or "None"})")
     return VoidloopItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
 

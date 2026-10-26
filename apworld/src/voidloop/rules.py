@@ -27,39 +27,39 @@ def set_all_entrance_rules(world: VoidloopWorld) -> None:
 
     world.set_rule(entrance_craggy_cavern, True_())
     world.set_rule(entrance_desolate_dungeon,
-                   # HasGroup("Pickaxe Upgrades", count=3) &
-                   # HasGroup("Sword Upgrades", count=2) &
-                   # HasGroup("Player Upgrades", count=2) &
+                   HasGroup("Pickaxe Upgrades", count=3) &
+                   HasGroup("Sword Upgrades", count=2) &
+                   HasGroup("Player Upgrades", count=2) &
                    Has("Progressive Region Gem", count=1)
                    )
     world.set_rule(entrance_jagged_jungle,
-                   # HasGroup("Pickaxe Upgrades", count=6) &
-                   # HasGroup("Sword Upgrades", count=4) &
-                   # HasGroup("Player Upgrades", count=4) &
+                   HasGroup("Pickaxe Upgrades", count=6) &
+                   HasGroup("Sword Upgrades", count=4) &
+                   HasGroup("Player Upgrades", count=4) &
                    Has("Progressive Region Gem", count=2)
                    )
     world.set_rule(entrance_slippery_sanctuary,
-                   # Has("Player Luck Upgrade", count=1) &
-                   # HasGroup("Ability Evolutions", count=1) &
-                   # HasGroup("Pickaxe Upgrades", count=9) &
-                   # HasGroup("Sword Upgrades", count=6) &
-                   # HasGroup("Player Upgrades", count=6) &
+                   Has("Player Luck Upgrade", count=1) &
+                   HasGroup("Ability Evolutions", count=1) &
+                   HasGroup("Pickaxe Upgrades", count=9) &
+                   HasGroup("Sword Upgrades", count=6) &
+                   HasGroup("Player Upgrades", count=6) &
                    Has("Progressive Region Gem", count=3)
                    )
     world.set_rule(entrance_molten_mineshaft,
-                   # Has("Player Luck Upgrade", count=2) &
-                   # HasGroup("Ability Evolutions", count=2) &
-                   # HasGroup("Pickaxe Upgrades", count=12) &
-                   # HasGroup("Sword Upgrades", count=9) &
-                   # HasGroup("Player Upgrades", count=8) &
+                   Has("Player Luck Upgrade", count=2) &
+                   HasGroup("Ability Evolutions", count=2) &
+                   HasGroup("Pickaxe Upgrades", count=12) &
+                   HasGroup("Sword Upgrades", count=9) &
+                   HasGroup("Player Upgrades", count=8) &
                    Has("Progressive Region Gem", count=4)
                    )
     world.set_rule(entrance_the_void,
-                   # Has("Player Luck Upgrade", count=3) &  # Max obtainable: 5
-                   # HasGroup("Ability Evolutions", count=3) &  # Max obtainable: 6
-                   # HasGroup("Pickaxe Upgrades", count=15) &  # Max obtainable: 20
-                   # HasGroup("Sword Upgrades", count=12) &  # Max obtainable: 20
-                   # HasGroup("Player Upgrades", count=8) &  # Max obtainable: 14
+                   Has("Player Luck Upgrade", count=3) &  # Max obtainable: 5
+                   HasGroup("Ability Evolutions", count=3) &  # Max obtainable: 6
+                   HasGroup("Pickaxe Upgrades", count=15) &  # Max obtainable: 20
+                   HasGroup("Sword Upgrades", count=12) &  # Max obtainable: 20
+                   HasGroup("Player Upgrades", count=8) &  # Max obtainable: 14
                    Has("Progressive Region Gem", count=5)  # Max obtainable: 5, absolute requirement
                    )
 
@@ -76,7 +76,11 @@ def set_all_entrance_rules(world: VoidloopWorld) -> None:
 
 
 def set_all_location_rules(world: VoidloopWorld) -> None:
-    pass
+
+    return_to_sender = world.get_location("Return to Sender")
+    # Given worst possible actions, max skill points needed for master ninja is 23.
+    world.set_rule(return_to_sender, Has("Skill Point", 23))
+
     #craggy_cavern_treasure = world.get_location("Dungeon Gem")
 
     # Each dash upgrade (Group: "Dash Upgrades") is 1 point,
@@ -90,4 +94,4 @@ def set_all_location_rules(world: VoidloopWorld) -> None:
 
 
 def set_completion_condition(world: VoidloopWorld) -> None:
-    world.set_completion_rule(Has("Goal Clear"))
+    world.set_completion_rule(Has("Home"))

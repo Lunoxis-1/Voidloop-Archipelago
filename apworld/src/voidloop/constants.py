@@ -33,7 +33,7 @@ def _add_item(item_id: int, item_count: int, item_name: str, item_classification
         raise ValueError(f"Item {item_id} already exists.")
     ID_TO_ITEM_NAME[item_id] = item_name
     ITEM_NAME_TO_ID[item_name] = item_id
-    DEFAULT_ITEM_CLASSIFICATION[item_id] = item_classification
+    DEFAULT_ITEM_CLASSIFICATION[item_name] = item_classification
     ITEM_COUNT[item_id] = item_count
 
 def _add_location(location_id: int, location_count: int, location_name: str):
@@ -65,7 +65,8 @@ def _add_location(location_id: int, location_count: int, location_name: str):
 
 
 # Item ID guidelines:
-#  <=99 - Filler.
+#  1 - Goal!
+#  1XX - Filler.
 
 #  1XX Misc/Unclassified
 #
@@ -90,35 +91,44 @@ def _add_location(location_id: int, location_count: int, location_name: str):
 
 # Register all items.
 # Fine to just be done manually.
-_add_item(1,     0,  "Random Loot", IClass.filler)
-_add_item(2,     0,  "Voidrock", IClass.filler)
 
-_add_item(900,  50, "Skill Point", IClass.useful)
+# This is created and locked to the "Welcome Home" achievement elsewhere (the win con)
+# As such it should never be created otherwise.
+_add_item(1,     0,  "Home", IClass.progression)
 
-_add_item(1101,  10, "Pickaxe Damage Upgrade", IClass.useful)
-_add_item(1102,  5,  "Pickaxe Speed Upgrade", IClass.useful)
-_add_item(1103,  5,  "Pickaxe Range Upgrade", IClass.useful)
+_add_item(101,   0,  "Random Chest Loot", IClass.filler)
+_add_item(102,   0,  "Random Golden Chest Loot", IClass.filler)
+_add_item(110,   0,  "Voidrock", IClass.filler)
 
-_add_item(1111,  10, "Sword Damage Upgrade", IClass.useful)
-_add_item(1112,  5,  "Sword Speed Upgrade", IClass.useful)
-_add_item(1113,  5,  "Sword Range Upgrade", IClass.useful)
+# There is one achievement locked behind skill points. This means that skill points are in logic
+# WHICH MEANS THAT EVERY SINGLE SKILL POINT MUST BE MARKED PROGRESSION OR IT WILL FILLERROR
+# I hate this so much...
+_add_item(900,   50, "Skill Point", IClass.progression_deprioritized_skip_balancing)
 
-_add_item(1121,  5,  "Player Luck Upgrade", IClass.useful)
-_add_item(1122,  3,  "Player Health Upgrade", IClass.useful)
-_add_item(1123,  3,  "Player Speed Upgrade", IClass.useful)
-_add_item(1124,  3,  "Player Resistance Upgrade", IClass.useful)
+_add_item(1101,  10, "Pickaxe Damage Upgrade", IClass.progression_skip_balancing)
+_add_item(1102,  5,  "Pickaxe Speed Upgrade", IClass.progression_skip_balancing)
+_add_item(1103,  5,  "Pickaxe Range Upgrade", IClass.progression_skip_balancing)
 
-_add_item(1131,  2,  "Blast Evolution", IClass.useful)
+_add_item(1111,  10, "Sword Damage Upgrade", IClass.progression_skip_balancing)
+_add_item(1112,  5,  "Sword Speed Upgrade", IClass.progression_skip_balancing)
+_add_item(1113,  5,  "Sword Range Upgrade", IClass.progression_skip_balancing)
+
+_add_item(1121,  5,  "Player Luck Upgrade", IClass.progression_skip_balancing)
+_add_item(1122,  3,  "Player Health Upgrade", IClass.progression_skip_balancing)
+_add_item(1123,  3,  "Player Speed Upgrade", IClass.progression_skip_balancing)
+_add_item(1124,  3,  "Player Resistance Upgrade", IClass.progression_skip_balancing)
+
+_add_item(1131,  2,  "Blast Evolution", IClass.progression_skip_balancing)
 _add_item(1132,  5,  "Blast Cooldown Upgrade", IClass.useful)
 _add_item(1133,  10, "Blast Damage Upgrade", IClass.useful)
 _add_item(1134,  6,  "Blast Size Upgrade", IClass.useful)
 
-_add_item(1141,  2,  "Dash Evolution", IClass.useful)
+_add_item(1141,  2,  "Dash Evolution", IClass.progression_skip_balancing)
 _add_item(1142,  5,  "Dash Cooldown Upgrade", IClass.useful)
 _add_item(1143,  6,  "Dash Damage Upgrade", IClass.useful)
 _add_item(1144,  10, "Dash Power Upgrade", IClass.useful)
 
-_add_item(1151,  2,  "Energise Evolution", IClass.useful)
+_add_item(1151,  2,  "Energise Evolution", IClass.progression_skip_balancing)
 _add_item(1152,  5,  "Energise Cooldown Upgrade", IClass.useful)
 _add_item(1153,  10, "Energise Multiplier Upgrade", IClass.useful)
 _add_item(1154,  6,  "Energise Duration Upgrade", IClass.useful)
@@ -214,6 +224,7 @@ _add_location(950, 1, "Destroy All Tiles in a Resource Room")
 
 
 
+
 # Generates ids 110101~110110 with names "Pickaxe Damage Upgrade 1", "Pickaxe Damage Upgrade 2", ect..
 _add_location(110100, 10, "Pickaxe Damage Upgrade")
 _add_location(110200, 5,  "Pickaxe Speed Upgrade")
@@ -228,20 +239,20 @@ _add_location(112200, 3,  "Player Health Upgrade")
 _add_location(112300, 3,  "Player Speed Upgrade")
 _add_location(112400, 3,  "Player Resistance Upgrade")
 
-_add_location(113100, 3,  "Blast Evolution")
-_add_location(113200, 6,  "Blast Cooldown Upgrade")
-_add_location(113300, 11, "Blast Damage Upgrade")
-_add_location(113400, 7,  "Blast Size Upgrade")
+_add_location(113100, 2,  "Blast Evolution")
+_add_location(113200, 5,  "Blast Cooldown Upgrade")
+_add_location(113300, 10, "Blast Damage Upgrade")
+_add_location(113400, 6,  "Blast Size Upgrade")
 
-_add_location(114100, 3,  "Dash Evolution")
-_add_location(114200, 6,  "Dash Cooldown Upgrade")
-_add_location(114300, 7,  "Dash Damage Upgrade")
-_add_location(114400, 11, "Dash Power Upgrade")
+_add_location(114100, 2,  "Dash Evolution")
+_add_location(114200, 5,  "Dash Cooldown Upgrade")
+_add_location(114300, 6,  "Dash Damage Upgrade")
+_add_location(114400, 10, "Dash Power Upgrade")
 
-_add_location(115100, 3,  "Energise Evolution")
-_add_location(115200, 6,  "Energise Cooldown Upgrade")
-_add_location(115300, 11, "Energise Multiplier Upgrade")
-_add_location(115400, 7,  "Energise Duration Upgrade")
+_add_location(115100, 2,  "Energise Evolution")
+_add_location(115200, 5,  "Energise Cooldown Upgrade")
+_add_location(115300, 10, "Energise Multiplier Upgrade")
+_add_location(115400, 6,  "Energise Duration Upgrade")
 
 _add_location(119002, 1,  "Dungeon Gem")
 _add_location(119003, 1,  "Jungle Gem")
@@ -249,5 +260,3 @@ _add_location(119004, 1,  "Ice Gem")
 _add_location(119005, 1,  "Lava Gem")
 _add_location(119006, 1,  "Voidgem")
 
-print(ITEM_NAME_TO_ID)
-print(LOCATION_NAME_TO_ID)

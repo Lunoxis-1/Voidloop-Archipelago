@@ -6,6 +6,9 @@ from worlds.AutoWorld import World
 
 from . import items, constants, locations, options, regions, rules, web_world
 
+from Utils import visualize_regions
+
+
 # https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/world%20api.md
 
 # The world class is the heart and soul of an apworld implementation.
@@ -59,6 +62,8 @@ class VoidloopWorld(World):
         regions.create_and_connect_regions(self)
         locations.create_all_locations(self)
 
+        visualize_regions(self.multiworld.get_region("Menu", self.player), "my_world.puml")
+
     def set_rules(self) -> None:
         rules.set_all_rules(self)
 
@@ -80,11 +85,12 @@ class VoidloopWorld(World):
     # There may be data that the game client will need to modify the behavior of the game.
     # This is what slot_data exists for. Upon every client connection, the slot's slot_data is sent to the client.
     # slot_data is just a dictionary using basic types, that will be converted to json when sent to the client.
-    def fill_slot_data(self) -> Mapping[str, Any]:
-        # If you need access to the player's chosen options on the client side, there is a helper for that.
-        return self.options.as_dict(
-            #"hard_mode", "hammer", "extra_starting_chest", "confetti_explosiveness", "player_sprite"
-        )
+    # def fill_slot_data(self) -> Mapping[str, Any]:
+    #     pass
+    #     # If you need access to the player's chosen options on the client side, there is a helper for that.
+    #     # return self.options.as_dict(
+    #     #     #"hard_mode", "hammer", "extra_starting_chest", "confetti_explosiveness", "player_sprite"
+    #     # )
 
 
 
