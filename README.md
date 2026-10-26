@@ -10,7 +10,7 @@ An implementation of the Archipelago Randomizer for Voidloop
 ## Required Software
 - Archipelago
 - Voidloop (Available on Steam)
-- Bepinex (Tested on Vepinex v5.4.23.5, [Available here](https://github.com/BepInEx/BepInEx/releases#release-v5.4.23.5))
+- Bepinex (Tested on Bepinex v5.4.23.5, [Available here](https://github.com/BepInEx/BepInEx/releases#release-v5.4.23.5))
 
 ## Setup Steps
 1. Install the .apworld
