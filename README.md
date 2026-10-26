@@ -28,7 +28,7 @@ Use the Options Creator in the Archipelago app to create your .yaml file.
 Total check count: ~200
 
 ## List of check locations:
-- All pickaxe, wword, player, and ability upgrades.
+- All pickaxe, sword, player, and ability upgrades.
 - All achievements
 - All hats
 - The floor 20 gem of each region
