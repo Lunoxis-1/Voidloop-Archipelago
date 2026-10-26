@@ -2,6 +2,9 @@
 
 An implementation of the Archipelago Randomizer for Voidloop
 
+# Current Known Issues
+- Game crashes when closed. This has no functional impact.
+
 # Voidloop Archipelago Setup Guide
 
 ## Required Software
