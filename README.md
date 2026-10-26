@@ -20,3 +20,21 @@ If everything is working, you will see a prompt to enter the host, slot name, an
 
 ## YAML Generation
 Use the Options Creator in the Archipelago app to create your .yaml file.
+
+# Randomization Info
+Total check count: ~200
+
+## List of check locations:
+- All pickaxe, wword, player, and ability upgrades.
+- All achievements
+- All hats
+- The floor 20 gem of each region
+
+## List of items that can be recieved:
+- All pickaxe, wword, player, and ability upgrades.
+- Skill points
+- Random loot (chest loot, golden chest loot, voidrock)
+- Region gems (progressive)
+
+## Goal
+Obtain the Voidgem, craft the Void Key, and reach level 20 of the Molten Mineshaft to reach The Void!
