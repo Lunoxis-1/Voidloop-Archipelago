@@ -17,3 +17,6 @@ An implementation of the Archipelago Randomizer for Voidloop
 More information for steps 2 and 3 are available at [the guide from Bepinex documentation](https://docs.bepinex.dev/articles/user_guide/installation/index.html).
 
 If everything is working, you will see a prompt to enter the host, slot name, and password when you open Voidloop!
+
+## YAML Generation
+Use the Options Creator in the Archipelago app to create your .yaml file.
