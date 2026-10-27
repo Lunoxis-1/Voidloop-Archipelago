@@ -87,20 +87,47 @@ class EvilMode(Toggle):
 #     # For example, we could make it so "player_sprite: kitty" resolves to "player_sprite: cat" like this:
 #     alias_kitty = option_cat
 
+class Leversanity(Choice):
+    """
+    Enables levers being checks. Adds 19 checks per region (95 total).
+    Some special room types don't have levers.
+    """
+
+    display_name = "Leversanity"
+
+    option_off = 0
+    option_20_per_region = 1
+
+    default = 0
+
+
+
+class ExitsAreLevers(Toggle):
+    """
+    When enabled, the floor exit will also trigger lever checks.
+    When disabled, some lever checks will require additional runs, as rooms can occasionally spawn without one.
+    Regardless of setting, floor 20 is never a check for Leversanity.
+    """
+
+    display_name = "Exits are levers"
+
+
+
 
 # We must now define a dataclass inheriting from PerGameCommonOptions that we put all our options in.
 # This is in the format "option_name_in_snake_case: OptionClassName".
 @dataclass
 class VoidloopOptions(PerGameCommonOptions):
-    pass
+    leversanity: Leversanity
+    exits_are_levers: ExitsAreLevers
 
 
 # If we want to group our options by similar type, we can do so as well. This looks nice on the website.
 option_groups = [
-    # OptionGroup(
-    #     "Gameplay Options",
-    #     [HardMode, Hammer, ExtraStartingChest, StartWithOneConfettiCannon, TrapChance],
-    # ),
+    OptionGroup(
+        "Sanities",
+        [Leversanity, ExitsAreLevers],
+    ),
     # OptionGroup(
     #     "Aesthetic Options",
     #     [ConfettiExplosiveness, PlayerSprite],
@@ -109,15 +136,10 @@ option_groups = [
 
 # Finally, we can define some option presets if we want the player to be able to quickly choose a specific "mode".
 option_presets = {
-    # "boring": {
-    #     "hard_mode": False,
-    #     "hammer": False,
-    #     "extra_starting_chest": False,
-    #     "start_with_one_confetti_cannon": False,
-    #     "trap_chance": 0,
-    #     "confetti_explosiveness": ConfettiExplosiveness.range_start,
-    #     "player_sprite": PlayerSprite.option_human,
-    # },
+    "Max Difficulty": {
+        "leversanity": Leversanity.option_20_per_region,
+        "exits_are_levers": False,
+    },
     # "the true way to play": {
     #     "hard_mode": True,
     #     "hammer": True,

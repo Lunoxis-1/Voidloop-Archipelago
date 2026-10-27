@@ -1,3 +1,5 @@
+from tornado import template
+
 from BaseClasses import Item, ItemClassification as IClass
 import warnings
 import traceback
@@ -36,10 +38,21 @@ def _add_item(item_id: int, item_count: int, item_name: str, item_classification
     DEFAULT_ITEM_CLASSIFICATION[item_name] = item_classification
     ITEM_COUNT[item_id] = item_count
 
-def _add_location(location_id: int, location_count: int, location_name: str):
+def _add_location(location_id: int, location_count: int, location_name: str, name_template: str | None = None, exclude: list[int] | None = None):
+    if name_template is None:
+        name_template = " [ID]"
+    if exclude is None:
+        exclude = []
+
+    # if we forget to include [ID] this should error
+    # if it didn't that would cause issues later
+    if not "[ID]" in name_template: raise ValueError(f"Bad name template for item {location_name}: {name_template}")
+
     if location_count <= 0:
-        raise ValueError(f'Expected positive location count, got {location_count or 'None'}.')
+        raise ValueError(f"Expected positive location count, got {location_count or 'None'}.")
     if location_count == 1:
+        # Name template ignored, we don't need an ID.
+        # Want a name with a number in it? Just add the number to location_name.
         if LOCATION_NAME_TO_ID.get(location_name):
             raise ValueError(f'Location {location_name} already exists.')
         LOCATION_NAME_TO_ID[location_name] = location_id
@@ -50,12 +63,16 @@ def _add_location(location_id: int, location_count: int, location_name: str):
         # Technically, 10 only needs 1 trailing zero. But the 0 case (e.g. 100) is
         # skipped to line up with upgrade numbers.
         # In other words, upgrade number 1 is given id 101, not 100.
-        trailing_zeros_needed = len(str(abs(location_count)))
+        location_name = location_name + name_template
+
+        trailing_zeros_needed = len(str(abs(location_count+1)))
         available_trailing_zeros = _count_trailing_zeros(location_id)
         if trailing_zeros_needed > available_trailing_zeros:
             raise ValueError(f'Location {location_name} was given base ID {location_id} with {available_trailing_zeros} trailing zeros, but {trailing_zeros_needed} are required to fill {location_count} slots.')
         for i in range(1, location_count+1):
-            this_location_name = location_name+" "+str(i)
+            # This creates a deliberate gap in location ids. This is because the game client calculates ids programmatically
+            if i in exclude: continue
+            this_location_name = location_name.replace("[ID]", str(i))
             if LOCATION_NAME_TO_ID.get(this_location_name):
                 raise ValueError(f'Location {this_location_name} already exists.')
             LOCATION_NAME_TO_ID[this_location_name] = location_id + i
@@ -88,6 +105,9 @@ def _add_location(location_id: int, location_count: int, location_name: str):
 #
 # 12XX Custom
 # 121X Timer upgrades
+
+# 1XXXX+ Sanity related
+# 11XXX Leversanity
 
 # Register all items.
 # Fine to just be done manually.
@@ -226,6 +246,7 @@ _add_location(950, 1, "Destroy All Tiles in a Resource Room")
 
 
 # Generates ids 110101~110110 with names "Pickaxe Damage Upgrade 1", "Pickaxe Damage Upgrade 2", ect..
+# All these have two extra digits
 _add_location(110100, 10, "Pickaxe Damage Upgrade")
 _add_location(110200, 5,  "Pickaxe Speed Upgrade")
 _add_location(110300, 5,  "Pickaxe Range Upgrade")
@@ -259,4 +280,10 @@ _add_location(119003, 1,  "Jungle Gem")
 _add_location(119004, 1,  "Ice Gem")
 _add_location(119005, 1,  "Lava Gem")
 _add_location(119006, 1,  "Voidgem")
+
+_add_location(1100100, 20,  "Craggy Cavern Lever", " (Floor [ID])", [20])
+_add_location(1100200, 20,  "Desolate Dungeon Lever", " (Floor [ID])", [20])
+_add_location(1100400, 20,  "Jagged Jungle Lever", " (Floor [ID])", [20])
+_add_location(1100300, 20,  "Slippery Sanctuary Lever", " (Floor [ID])", [20])
+_add_location(1100500, 20,  "Molten Mineshaft Lever", " (Floor [ID])", [20])
 

@@ -63,7 +63,7 @@ def create_regular_locations(world: VoidloopWorld) -> None:
     # Achievements first, achievement order, except for the floor 20 achievements because those have to be moved at some point.
 
     # Every location here should be accessible in sphere 0.
-    craggy_cavern_locations = get_location_names_with_ids([
+    craggy_cavern_locations = [
         "Happy Camper",
         "Memento",
         "Novice Hoarder",
@@ -116,8 +116,8 @@ def create_regular_locations(world: VoidloopWorld) -> None:
         "Energise Duration Upgrade 2",
 
         "Craggy Conquerer",
-    ])
-    desolate_dungeon_locations = get_location_names_with_ids([
+    ]
+    desolate_dungeon_locations = [
         "Novice Explorer",
         "Advanced Hoarder",
         "Advanced Brewer",
@@ -158,8 +158,8 @@ def create_regular_locations(world: VoidloopWorld) -> None:
         "Energise Duration Upgrade 3",
 
         "Dungeon Destroyer",
-    ])
-    jagged_jungle_locations = get_location_names_with_ids([
+    ]
+    jagged_jungle_locations = [
         "Apprentice Explorer",
         "Advanced Traveller",
         "Advanced Upgrader",
@@ -202,8 +202,8 @@ def create_regular_locations(world: VoidloopWorld) -> None:
         "Energise Duration Upgrade 4",
 
         "Jungle Jogger",
-    ])
-    slippery_sanctuary_locations = get_location_names_with_ids([
+    ]
+    slippery_sanctuary_locations = [
         "Advanced Explorer",
         "Advanced Slayer",
         "Master Contractor",
@@ -275,8 +275,8 @@ def create_regular_locations(world: VoidloopWorld) -> None:
         "Hat: Robot Head",
 
         "Sanctuary Soldier",
-    ])
-    molten_mineshaft_locations = get_location_names_with_ids([
+    ]
+    molten_mineshaft_locations = [
         "Master Explorer",
         "Master Traveller",
         "Master Slayer",
@@ -326,12 +326,31 @@ def create_regular_locations(world: VoidloopWorld) -> None:
         "Exotic Killer",
         "Millionaire",
         "Destroy All Tiles in a Resource Room",
-    ])
-    the_void_locations = get_location_names_with_ids([
+    ]
+    the_void_locations = [
         "Welcome Home",
         "Master Hoarder",
-        "Voidloop",
-    ])
+        "Voidloop"
+    ]
+
+    # Now the options
+    # Leversanity (20)
+    if world.options.leversanity.value >= 1:
+        for i in range(1, 21):
+            if i == 20: continue # floor 20 is ALWAYS excluded.
+            craggy_cavern_locations.extend([f"Craggy Cavern Lever (Floor {i})"])
+            desolate_dungeon_locations.extend([f"Desolate Dungeon Lever (Floor {i})"])
+            jagged_jungle_locations.extend([f"Jagged Jungle Lever (Floor {i})"])
+            slippery_sanctuary_locations.extend([f"Slippery Sanctuary Lever (Floor {i})"])
+            molten_mineshaft_locations.extend([f"Molten Mineshaft Lever (Floor {i})"])
+
+    craggy_cavern_locations = get_location_names_with_ids(craggy_cavern_locations)
+    desolate_dungeon_locations = get_location_names_with_ids(desolate_dungeon_locations)
+    jagged_jungle_locations = get_location_names_with_ids(jagged_jungle_locations)
+    slippery_sanctuary_locations = get_location_names_with_ids(slippery_sanctuary_locations)
+    molten_mineshaft_locations = get_location_names_with_ids(molten_mineshaft_locations)
+    the_void_locations = get_location_names_with_ids(the_void_locations)
+
     craggy_cavern.add_locations(craggy_cavern_locations, VoidloopLocation)
     desolate_dungeon.add_locations(desolate_dungeon_locations, VoidloopLocation)
     jagged_jungle.add_locations(jagged_jungle_locations, VoidloopLocation)
