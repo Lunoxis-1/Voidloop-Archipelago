@@ -1,0 +1,8 @@
+C:\My Game\BepInEx\plugins\Voidloop_Archipelago\Voidloop_Archipelago.deps.json
+C:\My Game\BepInEx\plugins\Voidloop_Archipelago\Voidloop_Archipelago.dll
+C:\My Game\BepInEx\plugins\Voidloop_Archipelago\Voidloop_Archipelago.pdb
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Debug\ArchipelagoBepin5Template.csproj.AssemblyReference.cache
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Debug\ArchipelagoBepin5Template.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Debug\ArchipelagoBepin5Template.csproj.CoreCompileInputs.cache
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Debug\Voidloop_Archipelago.dll
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Debug\Voidloop_Archipelago.pdb

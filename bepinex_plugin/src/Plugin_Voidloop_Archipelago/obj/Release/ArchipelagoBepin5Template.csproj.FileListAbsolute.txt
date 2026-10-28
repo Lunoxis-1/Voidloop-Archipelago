@@ -1,0 +1,6 @@
+C:\Users\lupus\Plugin_Voidloop_Archipelago\bin\Release\Voidloop_Archipelago\Voidloop_Archipelago.deps.json
+C:\Users\lupus\Plugin_Voidloop_Archipelago\bin\Release\Voidloop_Archipelago\Voidloop_Archipelago.dll
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Release\ArchipelagoBepin5Template.csproj.AssemblyReference.cache
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Release\ArchipelagoBepin5Template.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Release\ArchipelagoBepin5Template.csproj.CoreCompileInputs.cache
+C:\Users\lupus\Plugin_Voidloop_Archipelago\obj\Release\Voidloop_Archipelago.dll

@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using BepInEx;
 using System.Collections.Concurrent;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
 
 namespace Voidloop_Archipelago.Archipelago;
 
@@ -200,6 +201,11 @@ public class ArchipelagoClient
         }
     }
 
+    private void HandleSlotData(Dictionary<string, object> data)
+    {
+        slotData = JsonConvert.DeserializeObject<SlotData>(JsonConvert.SerializeObject(data), [new VersionConverter()]);
+    }
+
     /// <summary>
     /// handle the connection result and do things
     /// </summary>
@@ -210,12 +216,9 @@ public class ArchipelagoClient
         if (result.Successful)
         {
             var success = (LoginSuccessful)result;
-            
-            if (success is LoginSuccessful loginSuccess)
-            {
-                slotData = JObject.FromObject(loginSuccess.SlotData).ToObject<SlotData>();
-            }
 
+            slotData = session.DataStorage.GetSlotData<SlotData>();
+            
             ServerData.SetupSession(success.SlotData, session.RoomState.Seed);
             Authenticated = true;
 
