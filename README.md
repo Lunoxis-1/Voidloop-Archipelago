@@ -1,4 +1,4 @@
-# Voidloop-Archipelago-v0.0.1
+# Voidloop-Archipelago-v0.1.0
 
 An implementation of the Archipelago Randomizer for Voidloop
 
@@ -25,13 +25,14 @@ If everything is working, you will see a prompt to enter the host, slot name, an
 Use the Options Creator in the Archipelago app to create your .yaml file.
 
 # Randomization Info
-Total check count: ~200
+Total check count: ~200 base, up to ~300.
 
 ## List of check locations:
 - All pickaxe, sword, player, and ability upgrades.
 - All achievements
 - All hats
 - The floor 20 gem of each region
+- (Optional) Every lever up to floor 20 of each region.
 
 ## List of items that can be recieved:
 - All pickaxe, wword, player, and ability upgrades.
